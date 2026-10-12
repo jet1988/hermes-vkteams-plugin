@@ -34,7 +34,7 @@ messages, shows a typing indicator.
 ```bash
 # 1. Copy the plugin into the Hermes user plugins directory
 mkdir -p ~/.hermes/plugins/vkteams
-cp -r plugins/platforms/vkteams/* ~/.hermes/plugins/vkteams/
+cp -r plugin.yaml __init__.py adapter.py ~/.hermes/plugins/vkteams/
 
 # 2. Set the bot token (VK Teams / ICQ New bot token)
 export VKTEAMS_TOKEN="001.<app>.<key>:<botUserId>"
