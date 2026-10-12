@@ -538,8 +538,11 @@ class VkTeamsAdapter(BasePlatformAdapter):  # type: ignore[misc]
 
 
 def check_requirements() -> bool:
-    if not os.getenv("VKTEAMS_TOKEN"):
-        return False
+    """Dependency gate only — the token may come from config.yaml
+    (platforms.vkteams.extra.token) or env, so it must NOT be required here.
+    Hermes calls check_fn before the adapter is created; requiring the env
+    token here makes an enabled-but-YAML-configured platform report
+    "No adapter available"."""
     try:
         import httpx  # noqa: F401
     except ImportError:
@@ -549,7 +552,7 @@ def check_requirements() -> bool:
 
 def validate_config(config) -> bool:
     extra = getattr(config, "extra", {}) or {}
-    token = os.getenv("VKTEAMS_TOKEN", "") or extra.get("token", "")
+    token = os.getenv("VKTEAMS_TOKEN", "") or extra.get("token", "") or extra.get("api_key", "")
     return bool(token)
 
 
