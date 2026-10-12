@@ -8,7 +8,7 @@ description: >
   sends text with format-styles (bold, italic, links, quotes, lists,
   code blocks), edits and deletes messages, shows typing indicator.
   Ported from the OpenClaw vkteams channel plugin.
-author: Ermil
+author: jet1988
 requires_env:
   - name: VKTEAMS_TOKEN
     description: "VK Teams bot token (format: 001.<app>.<key>:<botUserId>)"
